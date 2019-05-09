@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,18 +13,21 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private ListView listData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        listData = (ListView) findViewById(R.id.xmlListView);
         Log.d(TAG, "onCreate: starting new AsyncTask");
         DownloadData downloadData = new DownloadData();
-        downloadData.execute("https://news.google.com/rss?hl=en-CA&gl=CA&ceid=CA:en");
+        downloadData.execute("https://rss.itunes.apple.com/api/v1/us/apple-music/top-songs/all/25/explicit.rss");
         Log.d(TAG, "onCreate: done");
     }
 
@@ -35,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "OnPostExecute: parameter is " + s);
             ParseData parseData = new ParseData();
             parseData.parse(s);
+
+            ArrayAdapter<FeedEntry> arrayAdapter = new ArrayAdapter<FeedEntry>(MainActivity.this, R.layout.list_item, parseData.getData());
+            listData.setAdapter(arrayAdapter);
         }
 
 

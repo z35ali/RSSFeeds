@@ -63,10 +63,8 @@ public class ParseData {
                                 currentRecord.setPubDate(textValue);
                             }else if ("description".equalsIgnoreCase(tagName)){
                                 currentRecord.setDescription(textValue);
-                            }else if ("source".equalsIgnoreCase(tagName)){
-                                currentRecord.setSource(textValue);
-                            }else if ("media:content".equalsIgnoreCase(tagName)){
-                                currentRecord.setMediaContent(textValue);
+                            }else if ("category".equalsIgnoreCase(tagName)) {
+                                currentRecord.setCategory(textValue);
                             }
                         }
                         break;

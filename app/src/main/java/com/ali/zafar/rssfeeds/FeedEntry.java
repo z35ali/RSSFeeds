@@ -2,13 +2,7 @@ package com.ali.zafar.rssfeeds;
 
 public class FeedEntry {
 
-    private String title;
-    private String link;
-    private String guid;
-    private String pubDate;
-    private String description;
-    private String source;
-    private String mediaContent;
+    private String title, category, link, guid, description, pubdate;
 
     public String getTitle() {
         return title;
@@ -16,6 +10,14 @@ public class FeedEntry {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getLink() {
@@ -34,14 +36,6 @@ public class FeedEntry {
         this.guid = guid;
     }
 
-    public String getPubDate() {
-        return pubDate;
-    }
-
-    public void setPubDate(String pubDate) {
-        this.pubDate = pubDate;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -50,32 +44,23 @@ public class FeedEntry {
         this.description = description;
     }
 
-    public String getSource() {
-        return source;
+    public String getPubdate() {
+        return pubdate;
     }
 
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public String getMediaContent() {
-        return mediaContent;
-    }
-
-    public void setMediaContent(String mediaContent) {
-        this.mediaContent = mediaContent;
+    public void setPubDate(String pubdate) {
+        this.pubdate = pubdate;
     }
 
     @Override
     public String toString() {
         return "FeedEntry{" +
                 "title='" + title + '\'' +
+                ", category='" + category + '\'' +
                 ", link='" + link + '\'' +
                 ", guid='" + guid + '\'' +
-                ", pubDate='" + pubDate + '\'' +
                 ", description='" + description + '\'' +
-                ", source='" + source + '\'' +
-                ", mediaContent='" + mediaContent + '\'' +
+                ", pubdate='" + pubdate + '\'' +
                 '}';
     }
 }

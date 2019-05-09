@@ -9,14 +9,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class FeedAdapter extends ArrayAdapter {
+public class MusicFeedAdapter extends ArrayAdapter {
     private static final String TAG = "FeedAdapter";
     private final int layoutResource;
     private final LayoutInflater layoutInflater;
-    private List<FeedEntry> data;
+    private List<MusicItem> data;
 
 
-    public FeedAdapter(Context context, int resource, List<FeedEntry> data) {
+    public MusicFeedAdapter(Context context, int resource, List<MusicItem> data) {
         super(context, resource);
         this.layoutResource = resource;
         this.layoutInflater = LayoutInflater.from(context);
@@ -41,7 +41,7 @@ public class FeedAdapter extends ArrayAdapter {
         }
 
 
-        FeedEntry currentData = data.get(position);
+        MusicItem currentData = data.get(position);
         String[] artistSongParts = currentData.getTitle().split("-");
 
         if (artistSongParts.length ==2) {

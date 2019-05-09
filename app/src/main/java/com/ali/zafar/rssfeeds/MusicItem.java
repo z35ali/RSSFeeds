@@ -1,6 +1,6 @@
 package com.ali.zafar.rssfeeds;
 
-public class FeedEntry {
+public class MusicItem {
 
     private String title, category, link, guid, description, pubdate;
 

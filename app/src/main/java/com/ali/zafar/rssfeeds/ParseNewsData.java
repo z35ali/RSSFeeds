@@ -1,28 +1,27 @@
+
 package com.ali.zafar.rssfeeds;
 
-import android.util.Log;
+        import org.xmlpull.v1.XmlPullParser;
+        import org.xmlpull.v1.XmlPullParserFactory;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
+        import java.io.StringReader;
+        import java.util.ArrayList;
 
-import java.io.StringReader;
-import java.util.ArrayList;
+public class ParseNewsData {
+    private static final String TAG = "ParseNewsData";
+    private ArrayList<NewsItem> data;
 
-public class ParseData {
-    private static final String TAG = "ParseData";
-    private ArrayList<FeedEntry> data;
-
-    public ParseData() {
+    public ParseNewsData() {
         this.data = new ArrayList<>();
     }
 
-    public ArrayList<FeedEntry> getData() {
+    public ArrayList<NewsItem> getData() {
         return data;
     }
 
     public boolean parse(String xmlData){
         boolean status = true;
-        FeedEntry currentRecord = null;
+        NewsItem currentRecord = null;
         boolean inEntry = false;
         String textValue = "";
 
@@ -38,17 +37,17 @@ public class ParseData {
                 switch (eventType) {
                     case XmlPullParser.START_TAG:
                         //Log.d(TAG, "parse: Starting tag for " + tagName);
-                      if ("item".equalsIgnoreCase(tagName)){
-                          inEntry = true;
-                          currentRecord = new FeedEntry();
-                      }
-                      break;
+                        if ("item".equalsIgnoreCase(tagName)){
+                            inEntry = true;
+                            currentRecord = new NewsItem();
+                        }
+                        break;
 
-                      case XmlPullParser.TEXT:
-                          textValue = xpp.getText();
-                          break;
+                    case XmlPullParser.TEXT:
+                        textValue = xpp.getText();
+                        break;
                     case XmlPullParser.END_TAG:
-                       // Log.d(TAG, "parse: Ending tag for "+ tagName);
+                        // Log.d(TAG, "parse: Ending tag for "+ tagName);
                         if(inEntry){
                             if("item".equalsIgnoreCase(tagName)){
                                 data.add(currentRecord);
@@ -59,12 +58,14 @@ public class ParseData {
                                 currentRecord.setLink(textValue);
                             }else if ("guid".equalsIgnoreCase(tagName)){
                                 currentRecord.setGuid(textValue);
-                            }else if ("pubdate".equalsIgnoreCase(tagName)){
+                            }else if ("pubdate".equalsIgnoreCase(tagName)) {
                                 currentRecord.setPubDate(textValue);
+                            }else if ("author".equalsIgnoreCase(tagName)) {
+                                currentRecord.setAuthor(textValue);
+                            }else if ("category".equalsIgnoreCase(tagName)) {
+                                currentRecord.setCategory(textValue);
                             }else if ("description".equalsIgnoreCase(tagName)){
                                 currentRecord.setDescription(textValue);
-                            }else if ("category".equalsIgnoreCase(tagName) && !textValue.equals("Music")) {
-                                currentRecord.setCategory(textValue);
                             }
                         }
                         break;
@@ -74,7 +75,7 @@ public class ParseData {
                 }
                 eventType = xpp.next();
             }
-            /*for (FeedEntry data: data){
+            /*for (NewsItem data: data){
                 Log.d(TAG, "*******************");
                 Log.d(TAG, data.toString());
             } */

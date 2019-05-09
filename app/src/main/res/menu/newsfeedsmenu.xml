@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item
+        android:id="@+id/menuTopNews"
+        android:title="Top Stories" />
+
+    <item
+        android:id="@+id/menuWorld"
+        android:title="World" />
+    <item
+        android:id="@+id/menuCanada"
+        android:title="Canada" />
+    <item
+        android:id="@+id/menuPolitics"
+        android:title="Politics" />
+    <item
+        android:id="@+id/menuBusiness"
+        android:title="Business" />
+    <item
+        android:id="@+id/menuHealth"
+        android:title="Health" />
+    <item
+        android:id="@+id/menuArts"
+        android:title="Arts and Entertainment" />
+    <item
+        android:id="@+id/menuTech"
+        android:title="Technology and Science" />
+</menu>

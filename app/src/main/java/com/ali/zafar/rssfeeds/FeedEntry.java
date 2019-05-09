@@ -5,7 +5,7 @@ public class FeedEntry {
     private String title;
     private String link;
     private String guid;
-    private String pubdate;
+    private String pubDate;
     private String description;
     private String source;
     private String mediaContent;
@@ -34,12 +34,12 @@ public class FeedEntry {
         this.guid = guid;
     }
 
-    public String getPubdate() {
-        return pubdate;
+    public String getPubDate() {
+        return pubDate;
     }
 
-    public void setPubdate(String pubdate) {
-        this.pubdate = pubdate;
+    public void setPubDate(String pubDate) {
+        this.pubDate = pubDate;
     }
 
     public String getDescription() {
@@ -66,4 +66,16 @@ public class FeedEntry {
         this.mediaContent = mediaContent;
     }
 
+    @Override
+    public String toString() {
+        return "FeedEntry{" +
+                "title='" + title + '\'' +
+                ", link='" + link + '\'' +
+                ", guid='" + guid + '\'' +
+                ", pubDate='" + pubDate + '\'' +
+                ", description='" + description + '\'' +
+                ", source='" + source + '\'' +
+                ", mediaContent='" + mediaContent + '\'' +
+                '}';
+    }
 }

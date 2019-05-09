@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 public class MusicFeedAdapter extends ArrayAdapter {
-    private static final String TAG = "MusicFeedAdapter";
+    private static final String TAG = "FeedAdapter";
     private final int layoutResource;
     private final LayoutInflater layoutInflater;
     private List<MusicItem> data;
@@ -65,10 +65,10 @@ public class MusicFeedAdapter extends ArrayAdapter {
         final TextView tvSummary;
 
         ViewHolder(View v) {
-            this.tvName = v.findViewById(R.id.tvTitleNews);
-            this.tvArtist = v.findViewById(R.id.tvAuthorNews);
-            this.tvSummary = v.findViewById(R.id.tvDescriptionNews);
-            this.tvLink = v.findViewById(R.id.tvLinkNews);
+            this.tvName = v.findViewById(R.id.tvName);
+            this.tvArtist = v.findViewById(R.id.tvArtist);
+            this.tvSummary = v.findViewById(R.id.tvSummary);
+            this.tvLink = v.findViewById(R.id.tvLink);
             this.tvDate = v.findViewById(R.id.tvDate);
         }
 

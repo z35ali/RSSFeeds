@@ -2,13 +2,7 @@ package com.ali.zafar.rssfeeds;
 
 public class FeedEntry {
 
-    private String title;
-    private String link;
-    private String guid;
-    private String pubdate;
-    private String description;
-    private String source;
-    private String mediaContent;
+    private String title, category, link, guid, description, pubdate;
 
     public String getTitle() {
         return title;
@@ -16,6 +10,14 @@ public class FeedEntry {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getLink() {
@@ -34,14 +36,6 @@ public class FeedEntry {
         this.guid = guid;
     }
 
-    public String getPubdate() {
-        return pubdate;
-    }
-
-    public void setPubdate(String pubdate) {
-        this.pubdate = pubdate;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -50,20 +44,22 @@ public class FeedEntry {
         this.description = description;
     }
 
-    public String getSource() {
-        return source;
+    public String getPubdate() {
+        return pubdate;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    public void setPubDate(String pubdate) {
+        this.pubdate = pubdate;
     }
 
-    public String getMediaContent() {
-        return mediaContent;
+    @Override
+    public String toString() {
+        return
+                "title='" + title + '\'' +
+                ", category='" + category + '\'' +
+                ", link='" + link + '\'' +
+                ", guid='" + guid + '\'' +
+                ", description='" + description + '\'' +
+                ", pubdate='" + pubdate;
     }
-
-    public void setMediaContent(String mediaContent) {
-        this.mediaContent = mediaContent;
-    }
-
 }

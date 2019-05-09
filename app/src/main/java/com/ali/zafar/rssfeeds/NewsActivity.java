@@ -15,25 +15,26 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
+public class NewsActivity extends AppCompatActivity {
+    private static final String TAG = "NewsActivity";
     private ListView listData;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_news);
 
         listData = (ListView) findViewById(R.id.xmlListView);
 
-        downloadUrl("https://rss.itunes.apple.com/api/v1/ca/apple-music/top-songs/all/100/explicit.rss");
+        downloadUrl("https://www.cbc.ca/cmlink/rss-topstories");
+        setTitle("Top Stories");
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.musicfeedsmenu, menu);
+        getMenuInflater().inflate(R.menu.newsfeedsmenu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -44,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
         switch(id){
 
-            case R.id.menuSoon:
-                setTitle("Coming Soon");
-                feedUrl = "https://rss.itunes.apple.com/api/v1/ca/apple-music/coming-soon/all/100/explicit.rss";
+            case R.id.menuWorld:
+                setTitle("World News");
+                feedUrl = "https://www.cbc.ca/cmlink/rss-world";
                 break;
             case R.id.menuTopSongs:
                 setTitle("Top Songs");
@@ -78,12 +79,12 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             //Log.d(TAG, "OnPostExecute: parameter is " + s);
-            ParseMusicData parseData = new ParseMusicData();
+            ParseNewsData parseData = new ParseNewsData();
             parseData.parse(s);
 
-            //ArrayAdapter<MusicItem> arrayAdapter = new ArrayAdapter<MusicItem>(MainActivity.this, R.layout.list_item, parseData.getData());
+            //ArrayAdapter<NewsItem> arrayAdapter = new ArrayAdapter<NewsItem>(NewsActivity.this, R.layout.list_item, parseData.getData());
             //listData.setAdapter(arrayAdapter);
-            MusicFeedAdapter feedAdapter = new MusicFeedAdapter(MainActivity.this, R.layout.musiclistrecord, parseData.getData());
+            NewsFeedAdapter feedAdapter = new NewsFeedAdapter(NewsActivity.this, R.layout.newslistrecord, parseData.getData());
             listData.setAdapter(feedAdapter);
 
         }

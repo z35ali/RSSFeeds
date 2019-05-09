@@ -40,8 +40,10 @@ public class FeedAdapter extends ArrayAdapter {
         String[] artistSongParts = currentData.getTitle().split("-");
 
         if (artistSongParts.length ==2) {
-            tvArtist.setText(artistSongParts[1]);
-            tvName.setText(artistSongParts[0]);
+            tvArtist.setText("Artist: "+artistSongParts[1].trim());
+            tvName.setText("Song: "+artistSongParts[0].trim());
+        }else{
+            tvArtist.setText(currentData.getTitle());
         }
         tvLink.setText("Apple Music Link:\n" + currentData.getLink());
         tvDate.setText("Publication Date: " + currentData.getPubdate().substring(0, currentData.getPubdate().length()-15));

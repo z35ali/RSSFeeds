@@ -49,13 +49,33 @@ public class NewsActivity extends AppCompatActivity {
                 setTitle("World News");
                 feedUrl = "https://www.cbc.ca/cmlink/rss-world";
                 break;
-            case R.id.menuTopSongs:
-                setTitle("Top Songs");
-                feedUrl = "https://rss.itunes.apple.com/api/v1/ca/apple-music/top-songs/all/100/explicit.rss";
+            case R.id.menuTopNews:
+                setTitle("Top Stories");
+                feedUrl = "https://www.cbc.ca/cmlink/rss-topstories";
                 break;
-            case R.id.menuAlbums:
-                setTitle("Top Albums");
-                feedUrl = "https://rss.itunes.apple.com/api/v1/ca/apple-music/top-albums/all/100/explicit.rss";
+            case R.id.menuCanada:
+                setTitle("Canada News");
+                feedUrl = "https://www.cbc.ca/cmlink/rss-canada";
+                break;
+            case R.id.menuPolitics:
+                setTitle("Politics News");
+                feedUrl = "https://www.cbc.ca/cmlink/rss-politics";
+                break;
+            case R.id.menuBusiness:
+                setTitle("Business News");
+                feedUrl = "https://www.cbc.ca/cmlink/rss-business";
+                break;
+            case R.id.menuHealth:
+                setTitle("Health News");
+                feedUrl = "https://www.cbc.ca/cmlink/rss-health";
+                break;
+            case R.id.menuArts:
+                setTitle("Arts and Entertainment News");
+                feedUrl = "https://www.cbc.ca/cmlink/rss-arts";
+                break;
+            case R.id.menuTech:
+                setTitle("Technology and Science News");
+                feedUrl = "https://www.cbc.ca/cmlink/rss-technology";
                 break;
             default:
                 return super.onOptionsItemSelected(item);

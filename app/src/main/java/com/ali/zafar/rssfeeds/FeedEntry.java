@@ -54,13 +54,12 @@ public class FeedEntry {
 
     @Override
     public String toString() {
-        return "FeedEntry{" +
+        return
                 "title='" + title + '\'' +
                 ", category='" + category + '\'' +
                 ", link='" + link + '\'' +
                 ", guid='" + guid + '\'' +
                 ", description='" + description + '\'' +
-                ", pubdate='" + pubdate + '\'' +
-                '}';
+                ", pubdate='" + pubdate;
     }
 }

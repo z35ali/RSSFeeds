@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -19,16 +21,56 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private ListView listData;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         listData = (ListView) findViewById(R.id.xmlListView);
-        Log.d(TAG, "onCreate: starting new AsyncTask");
+
+        downloadUrl("https://rss.itunes.apple.com/api/v1/ca/apple-music/top-songs/all/100/explicit.rss");
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.feeds_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        String feedUrl;
+
+        switch(id){
+
+            case R.id.menuSoon:
+                setTitle("Coming Soon");
+                feedUrl = "https://rss.itunes.apple.com/api/v1/ca/apple-music/coming-soon/all/100/explicit.rss";
+                break;
+            case R.id.menuTopSongs:
+                setTitle("Top Songs");
+                feedUrl = "https://rss.itunes.apple.com/api/v1/ca/apple-music/top-songs/all/100/explicit.rss";
+                break;
+            case R.id.menuAlbums:
+                setTitle("Top Albums");
+                feedUrl = "https://rss.itunes.apple.com/api/v1/ca/apple-music/top-albums/all/100/explicit.rss";
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+        downloadUrl(feedUrl);
+        return true;
+    }
+
+    private void downloadUrl(String url){
+        //Log.d(TAG, "onCreate: starting new AsyncTask");
         DownloadData downloadData = new DownloadData();
-        downloadData.execute("https://rss.itunes.apple.com/api/v1/ca/apple-music/top-songs/all/50/explicit.rss");
-        Log.d(TAG, "onCreate: done");
+        downloadData.execute(url);
+        //Log.d(TAG, "onCreate: done");
     }
 
     private class DownloadData extends AsyncTask<String, Void, String> {
@@ -37,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Log.d(TAG, "OnPostExecute: parameter is " + s);
+            //Log.d(TAG, "OnPostExecute: parameter is " + s);
             ParseData parseData = new ParseData();
             parseData.parse(s);
 

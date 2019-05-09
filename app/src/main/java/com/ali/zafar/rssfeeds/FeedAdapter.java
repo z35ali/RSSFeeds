@@ -30,28 +30,46 @@ public class FeedAdapter extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
         if (convertView== null){
             convertView = layoutInflater.inflate(layoutResource, parent, false);
-
+            viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
-        TextView tvName = (TextView)convertView.findViewById(R.id.tvName);
-        TextView tvArtist = (TextView)convertView.findViewById(R.id.tvArtist);
-        TextView tvSummary = (TextView)convertView.findViewById(R.id.tvSummary);
-        TextView tvLink = (TextView)convertView.findViewById(R.id.tvLink);
-        TextView tvDate = (TextView)convertView.findViewById(R.id.tvDate);
+
+
         FeedEntry currentData = data.get(position);
         String[] artistSongParts = currentData.getTitle().split("-");
 
         if (artistSongParts.length ==2) {
-            tvArtist.setText("Artist: "+artistSongParts[1].trim());
-            tvName.setText("Song: "+artistSongParts[0].trim());
+            viewHolder.tvArtist.setText("Artist: " + artistSongParts[1].trim());
+            viewHolder.tvName.setText("Song: " + artistSongParts[0].trim());
         }else{
-            tvArtist.setText(currentData.getTitle());
+            viewHolder.tvArtist.setText(currentData.getTitle());
         }
-        tvLink.setText("Apple Music Link:\n" + currentData.getLink());
-        tvDate.setText("Publication Date: " + currentData.getPubdate().substring(0, currentData.getPubdate().length()-15));
-        tvSummary.setText("Genre: "+currentData.getCategory());
+        viewHolder.tvLink.setText("Apple Music Link:\n" + currentData.getLink());
+        viewHolder.tvDate.setText("Publication Date: " + currentData.getPubdate().substring(0, currentData.getPubdate().length() - 15));
+        viewHolder.tvSummary.setText("Genre: " + currentData.getCategory());
 
         return convertView;
+    }
+
+    private class ViewHolder {
+        final TextView tvName;
+        final TextView tvLink;
+        final TextView tvArtist;
+        final TextView tvDate;
+        final TextView tvSummary;
+
+        ViewHolder(View v) {
+            this.tvName = v.findViewById(R.id.tvName);
+            this.tvArtist = v.findViewById(R.id.tvArtist);
+            this.tvSummary = v.findViewById(R.id.tvSummary);
+            this.tvLink = v.findViewById(R.id.tvLink);
+            this.tvDate = v.findViewById(R.id.tvDate);
+        }
+
     }
 }

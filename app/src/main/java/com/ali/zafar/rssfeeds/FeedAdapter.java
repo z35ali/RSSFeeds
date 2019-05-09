@@ -15,6 +15,7 @@ public class FeedAdapter extends ArrayAdapter {
     private final LayoutInflater layoutInflater;
     private List<FeedEntry> data;
 
+
     public FeedAdapter(Context context, int resource, List<FeedEntry> data) {
         super(context, resource);
         this.layoutResource = resource;
@@ -45,7 +46,7 @@ public class FeedAdapter extends ArrayAdapter {
 
         if (artistSongParts.length ==2) {
             viewHolder.tvArtist.setText("Artist: " + artistSongParts[1].trim());
-            viewHolder.tvName.setText("Song: " + artistSongParts[0].trim());
+            viewHolder.tvName.setText("Title: " + artistSongParts[0].trim());
         }else{
             viewHolder.tvArtist.setText(currentData.getTitle());
         }

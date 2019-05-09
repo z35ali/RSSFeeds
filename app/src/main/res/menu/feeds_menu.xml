@@ -2,13 +2,16 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+
     <item
-        android:id="@+id/menuSongs"
+        android:id="@+id/menuTopSongs"
         android:title="Top Songs" />
+
     <item
-        android:id="@+id/menuNews"
-        android:title="News" />
+        android:id="@+id/menuAlbums"
+        android:title="Top Albums" />
     <item
-        android:id="@+id/menuBooks"
-        android:title="Books" />
+        android:id="@+id/menuSoon"
+        android:title="Coming Soon" />
 </menu>

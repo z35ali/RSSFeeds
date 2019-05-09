@@ -55,9 +55,9 @@ public class NewsFeedAdapter extends ArrayAdapter {
         viewHolder.tvTitleNews.setText(currentNews.getTitle());
         viewHolder.tvCategoryNews.setText(currentNews.getCategory());
         viewHolder.tvDescriptionNews.setText(removeHtmlTags(currentNews.getDescription()));
-        viewHolder.tvAuthorNews.setText(currentNews.getAuthor());
-        viewHolder.tvDateNews.setText(currentNews.getPubDate());
-        viewHolder.tvLinkNews.setText(currentNews.getLink());
+        viewHolder.tvAuthorNews.setText("Author: "+currentNews.getAuthor());
+        viewHolder.tvDateNews.setText("Date: "+currentNews.getPubDate());
+        viewHolder.tvLinkNews.setText("Read Full Story:\n"+currentNews.getLink());
 
         String[] musicImageParts = currentNews.getDescription().split("'");
 

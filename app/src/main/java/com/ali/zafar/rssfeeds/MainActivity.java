@@ -18,6 +18,7 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private ListView listData;
+    private boolean music = false;
 
 
     @Override
@@ -27,13 +28,13 @@ public class MainActivity extends AppCompatActivity {
 
         listData = (ListView) findViewById(R.id.xmlListView);
 
-        downloadUrl("https://rss.itunes.apple.com/api/v1/ca/apple-music/top-songs/all/100/explicit.rss");
-
+        downloadUrl("https://www.cbc.ca/cmlink/rss-topstories");
+        setTitle("Top Stories");
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.musicfeedsmenu, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -43,18 +44,60 @@ public class MainActivity extends AppCompatActivity {
         String feedUrl;
 
         switch(id){
-
+            case R.id.menuWorld:
+                setTitle("World News");
+                feedUrl = "https://www.cbc.ca/cmlink/rss-world";
+                music = false;
+                break;
+            case R.id.menuTopNews:
+                setTitle("Top Stories");
+                feedUrl = "https://www.cbc.ca/cmlink/rss-topstories";
+                music = false;
+                break;
+            case R.id.menuCanada:
+                setTitle("Canada News");
+                feedUrl = "https://www.cbc.ca/cmlink/rss-canada";
+                music = false;
+                break;
+            case R.id.menuPolitics:
+                setTitle("Politics News");
+                feedUrl = "https://www.cbc.ca/cmlink/rss-politics";
+                music = false;
+                break;
+            case R.id.menuBusiness:
+                setTitle("Business News");
+                feedUrl = "https://www.cbc.ca/cmlink/rss-business";
+                music = false;
+                break;
+            case R.id.menuHealth:
+                setTitle("Health News");
+                feedUrl = "https://www.cbc.ca/cmlink/rss-health";
+                music = false;
+                break;
+            case R.id.menuArts:
+                setTitle("Arts and Entertainment News");
+                feedUrl = "https://www.cbc.ca/cmlink/rss-arts";
+                music = false;
+                break;
+            case R.id.menuTech:
+                setTitle("Technology and Science News");
+                feedUrl = "https://www.cbc.ca/cmlink/rss-technology";
+                music = false;
+                break;
             case R.id.menuSoon:
                 setTitle("Coming Soon");
                 feedUrl = "https://rss.itunes.apple.com/api/v1/ca/apple-music/coming-soon/all/100/explicit.rss";
+                music = true;
                 break;
             case R.id.menuTopSongs:
                 setTitle("Top Songs");
                 feedUrl = "https://rss.itunes.apple.com/api/v1/ca/apple-music/top-songs/all/100/explicit.rss";
+                music = true;
                 break;
             case R.id.menuAlbums:
                 setTitle("Top Albums");
                 feedUrl = "https://rss.itunes.apple.com/api/v1/ca/apple-music/top-albums/all/100/explicit.rss";
+                music = true;
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -78,13 +121,25 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             //Log.d(TAG, "OnPostExecute: parameter is " + s);
-            ParseMusicData parseData = new ParseMusicData();
-            parseData.parse(s);
 
-            //ArrayAdapter<MusicItem> arrayAdapter = new ArrayAdapter<MusicItem>(MainActivity.this, R.layout.list_item, parseData.getData());
-            //listData.setAdapter(arrayAdapter);
-            MusicFeedAdapter feedAdapter = new MusicFeedAdapter(MainActivity.this, R.layout.musiclistrecord, parseData.getData());
-            listData.setAdapter(feedAdapter);
+            if (music == true) {
+                ParseMusicData parseData = new ParseMusicData();
+                parseData.parse(s);
+
+                //ArrayAdapter<MusicItem> arrayAdapter = new ArrayAdapter<MusicItem>(MainActivity.this, R.layout.list_item, parseData.getData());
+                //listData.setAdapter(arrayAdapter);
+                MusicFeedAdapter feedAdapter = new MusicFeedAdapter(MainActivity.this, R.layout.musiclistrecord, parseData.getData());
+                listData.setAdapter(feedAdapter);
+            }else{
+                ParseNewsData parseData = new ParseNewsData();
+                parseData.parse(s);
+
+                //ArrayAdapter<NewsItem> arrayAdapter = new ArrayAdapter<NewsItem>(NewsActivity.this, R.layout.list_item, parseData.getData());
+                //listData.setAdapter(arrayAdapter);
+                NewsFeedAdapter feedAdapter = new NewsFeedAdapter(MainActivity.this, R.layout.newslistrecord, parseData.getData());
+                listData.setAdapter(feedAdapter);
+
+            }
 
         }
 

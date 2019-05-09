@@ -30,12 +30,15 @@ public class FeedAdapter extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = layoutInflater.inflate(layoutResource, parent, false);
-        TextView tvName = (TextView)view.findViewById(R.id.tvName);
-        TextView tvArtist = (TextView)view.findViewById(R.id.tvArtist);
-        TextView tvSummary = (TextView)view.findViewById(R.id.tvSummary);
-        TextView tvLink = (TextView)view.findViewById(R.id.tvLink);
-        TextView tvDate = (TextView)view.findViewById(R.id.tvDate);
+        if (convertView== null){
+            convertView = layoutInflater.inflate(layoutResource, parent, false);
+
+        }
+        TextView tvName = (TextView)convertView.findViewById(R.id.tvName);
+        TextView tvArtist = (TextView)convertView.findViewById(R.id.tvArtist);
+        TextView tvSummary = (TextView)convertView.findViewById(R.id.tvSummary);
+        TextView tvLink = (TextView)convertView.findViewById(R.id.tvLink);
+        TextView tvDate = (TextView)convertView.findViewById(R.id.tvDate);
         FeedEntry currentData = data.get(position);
         String[] artistSongParts = currentData.getTitle().split("-");
 
@@ -49,6 +52,6 @@ public class FeedAdapter extends ArrayAdapter {
         tvDate.setText("Publication Date: " + currentData.getPubdate().substring(0, currentData.getPubdate().length()-15));
         tvSummary.setText("Genre: "+currentData.getCategory());
 
-        return view;
+        return convertView;
     }
 }

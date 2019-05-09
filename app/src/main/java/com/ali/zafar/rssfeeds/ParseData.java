@@ -63,7 +63,7 @@ public class ParseData {
                                 currentRecord.setPubDate(textValue);
                             }else if ("description".equalsIgnoreCase(tagName)){
                                 currentRecord.setDescription(textValue);
-                            }else if ("category".equalsIgnoreCase(tagName)) {
+                            }else if ("category".equalsIgnoreCase(tagName) && !textValue.equals("Music")) {
                                 currentRecord.setCategory(textValue);
                             }
                         }

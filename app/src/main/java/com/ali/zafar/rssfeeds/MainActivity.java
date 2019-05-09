@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         listData = (ListView) findViewById(R.id.xmlListView);
         Log.d(TAG, "onCreate: starting new AsyncTask");
         DownloadData downloadData = new DownloadData();
-        downloadData.execute("https://rss.itunes.apple.com/api/v1/us/apple-music/top-songs/all/25/explicit.rss");
+        downloadData.execute("https://rss.itunes.apple.com/api/v1/ca/apple-music/top-songs/all/50/explicit.rss");
         Log.d(TAG, "onCreate: done");
     }
 
@@ -41,8 +41,11 @@ public class MainActivity extends AppCompatActivity {
             ParseData parseData = new ParseData();
             parseData.parse(s);
 
-            ArrayAdapter<FeedEntry> arrayAdapter = new ArrayAdapter<FeedEntry>(MainActivity.this, R.layout.list_item, parseData.getData());
-            listData.setAdapter(arrayAdapter);
+            //ArrayAdapter<FeedEntry> arrayAdapter = new ArrayAdapter<FeedEntry>(MainActivity.this, R.layout.list_item, parseData.getData());
+            //listData.setAdapter(arrayAdapter);
+            FeedAdapter feedAdapter = new FeedAdapter(MainActivity.this, R.layout.list_record, parseData.getData());
+            listData.setAdapter(feedAdapter);
+
         }
 
 

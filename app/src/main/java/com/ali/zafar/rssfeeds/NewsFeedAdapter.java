@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +14,7 @@ import android.widget.TextView;
 
 import java.io.InputStream;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class NewsFeedAdapter extends ArrayAdapter {
     private static final String TAG = "NewsFeedAdapter";
@@ -92,6 +90,7 @@ public class NewsFeedAdapter extends ArrayAdapter {
 
     }
 
+    // Remove the < > tags from description
     public String removeHtmlTags(String inStr) {
         int index=0;
         int index2=0;
@@ -107,9 +106,7 @@ public class NewsFeedAdapter extends ArrayAdapter {
     }
 
 
-
-
-
+    // Download image for each news article item passing through the adapter
     private class DownloadImageFromInternet extends AsyncTask<String, Void, Bitmap> {
         ImageView imageView;
 

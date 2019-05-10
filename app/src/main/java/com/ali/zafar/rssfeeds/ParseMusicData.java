@@ -48,6 +48,8 @@ public class ParseMusicData {
                     case XmlPullParser.END_TAG:
                        // Log.d(TAG, "parse: Ending tag for "+ tagName);
                         if(inEntry){
+
+                            // Searches xml for specific tags and saves data into currentRecord object
                             if("item".equalsIgnoreCase(tagName)){
                                 data.add(currentRecord);
                                 inEntry = false;

@@ -15,8 +15,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
+public class MusicActivity extends AppCompatActivity {
+    private static final String TAG = "MusicActivity";
     private ListView listData;
     private boolean music = false;
 
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listData = (ListView) findViewById(R.id.xmlListView);
+        listData = findViewById(R.id.xmlListView);
 
         downloadUrl("https://www.cbc.ca/cmlink/rss-topstories");
         setTitle("Top Stories");
@@ -126,9 +126,9 @@ public class MainActivity extends AppCompatActivity {
                 ParseMusicData parseData = new ParseMusicData();
                 parseData.parse(s);
 
-                //ArrayAdapter<MusicItem> arrayAdapter = new ArrayAdapter<MusicItem>(MainActivity.this, R.layout.list_item, parseData.getData());
+                //ArrayAdapter<MusicItem> arrayAdapter = new ArrayAdapter<MusicItem>(MusicActivity.this, R.layout.list_item, parseData.getData());
                 //listData.setAdapter(arrayAdapter);
-                MusicFeedAdapter feedAdapter = new MusicFeedAdapter(MainActivity.this, R.layout.musiclistrecord, parseData.getData());
+                MusicFeedAdapter feedAdapter = new MusicFeedAdapter(MusicActivity.this, R.layout.musiclistrecord, parseData.getData());
                 listData.setAdapter(feedAdapter);
             }else{
                 ParseNewsData parseData = new ParseNewsData();
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //ArrayAdapter<NewsItem> arrayAdapter = new ArrayAdapter<NewsItem>(NewsActivity.this, R.layout.list_item, parseData.getData());
                 //listData.setAdapter(arrayAdapter);
-                NewsFeedAdapter feedAdapter = new NewsFeedAdapter(MainActivity.this, R.layout.newslistrecord, parseData.getData());
+                NewsFeedAdapter feedAdapter = new NewsFeedAdapter(MusicActivity.this, R.layout.newslistrecord, parseData.getData());
                 listData.setAdapter(feedAdapter);
 
             }

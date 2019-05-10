@@ -8,14 +8,14 @@
         app:showAsAction="never">
     <menu >
         <item
-            android:id="@+id/menuPolitics"
-            android:title="Politics" />
+            android:id="@+id/menuTopNews"
+            android:title="Top Stories" />
         <item
             android:id="@+id/menuArts"
             android:title="Arts and Entertainment" />
         <item
-            android:id="@+id/menuTech"
-            android:title="Technology and Science" />
+            android:id="@+id/menuBusiness"
+            android:title="Business" />
         <item
             android:id="@+id/menuCanada"
             android:title="Canada" />
@@ -23,14 +23,18 @@
             android:id="@+id/menuHealth"
             android:title="Health" />
         <item
+            android:id="@+id/menuPolitics"
+            android:title="Politics" />
+
+        <item
+            android:id="@+id/menuTech"
+            android:title="Technology and Science" />
+        
+        <item
             android:id="@+id/menuWorld"
             android:title="World" />
-        <item
-            android:id="@+id/menuTopNews"
-            android:title="Top Stories" />
-        <item
-            android:id="@+id/menuBusiness"
-            android:title="Business" />
+
+
     </menu>
 
     </item>

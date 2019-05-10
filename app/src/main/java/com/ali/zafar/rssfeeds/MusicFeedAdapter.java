@@ -42,8 +42,9 @@ public class MusicFeedAdapter extends ArrayAdapter {
 
 
         MusicItem currentData = data.get(position);
-        String[] artistSongParts = currentData.getTitle().split("-");
 
+        // Split title of song into song name and artist
+        String[] artistSongParts = currentData.getTitle().split("-");
         if (artistSongParts.length ==2) {
             viewHolder.tvArtist.setText("Artist: " + artistSongParts[1].trim());
             viewHolder.tvName.setText("Title: " + artistSongParts[0].trim());

@@ -3,12 +3,12 @@ package com.ali.zafar.rssfeeds;
 
         import org.xmlpull.v1.XmlPullParser;
         import org.xmlpull.v1.XmlPullParserFactory;
-
         import java.io.StringReader;
         import java.util.ArrayList;
 
 public class ParseNewsData {
     private static final String TAG = "ParseNewsData";
+
     private ArrayList<NewsItem> data;
 
     public ParseNewsData() {
@@ -49,6 +49,8 @@ public class ParseNewsData {
                     case XmlPullParser.END_TAG:
                         // Log.d(TAG, "parse: Ending tag for "+ tagName);
                         if(inEntry){
+
+                            // Searches xml for specific tags and saves data into currentRecord object
                             if("item".equalsIgnoreCase(tagName)){
                                 data.add(currentRecord);
                                 inEntry = false;
@@ -56,8 +58,6 @@ public class ParseNewsData {
                                 currentRecord.setTitle(textValue);
                             }else if ("link".equalsIgnoreCase(tagName)){
                                 currentRecord.setLink(textValue);
-                            }else if ("guid".equalsIgnoreCase(tagName)){
-                                currentRecord.setGuid(textValue);
                             }else if ("pubdate".equalsIgnoreCase(tagName)) {
                                 currentRecord.setPubDate(textValue);
                             }else if ("author".equalsIgnoreCase(tagName)) {

@@ -10,7 +10,7 @@ import android.widget.Toast;
 import java.io.InputStream;
 
 public class NewsItem {
-    private String title, link, guid, pubDate, author, category, description;
+    private String title, link,pubDate, author, category, description;
 
 
     public String getTitle() {
@@ -30,13 +30,6 @@ public class NewsItem {
         this.link = link;
     }
 
-    public String getGuid() {
-        return guid;
-    }
-
-    public void setGuid(String guid) {
-        this.guid = guid;
-    }
 
     public String getPubDate() {
         return pubDate;
@@ -75,14 +68,10 @@ public class NewsItem {
         return "NewsItem{" +
                 "title='" + title + '\'' +
                 ", link='" + link + '\'' +
-                ", guid='" + guid + '\'' +
                 ", pubDate='" + pubDate + '\'' +
                 ", author='" + author + '\'' +
                 ", category='" + category + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }
-
-
-
 }
